@@ -1,0 +1,474 @@
+# =============================================================================
+# config_new_bysites.yaml — forward-simulation config
+# =============================================================================
+# Lean configuration for forward CLM-Microbe runs.
+#
+# Sections:
+#   paths                — directories used by loaders
+#   site_list            — list of sites
+#   observations         — per-site xlsx paths
+#   layers               — required by loader validator (values NOT used at runtime)
+#   initial_layer_states — kept for parity (also unused at runtime)
+#   constants            — the entries the forward model reads
+#   parameters           — alpha_O2, alpha_hydrogen, audit switch + microbe_par_dict
+#
+# AUDIT SWITCH:
+#   parameters.use_config_microbe_params: false  → DEFAULT.  Use the built-in
+#                                                  microbial parameter values in
+#                                                  the model
+#                                                  (_init_microbial_parameters).
+#
+#   parameters.use_config_microbe_params: true   → Read the microbe_par_dict
+#                                                  below instead; the model
+#                                                  prints any divergences from
+#                                                  the built-in values on
+#                                                  startup.
+# =============================================================================
+
+paths:
+  project_dir: .
+  env:
+    DATA_DIR: data/inputs/all_sites
+    INPUT_DIR: data/inputs
+    RESULTS_DIR: results_clm/by_site/
+site_list:
+  manual:
+  - MT01
+  - MT02
+  - MT03
+  - MT04
+  - MT05
+  - MT06
+  - MT07
+  - MT08
+  - MT09
+  - MT10
+  - MT11
+  - MT12
+  - MT13
+  - MT14
+  - MT15
+  - MT16
+  - MT17
+  - MT18
+  - MT19
+  - MT20
+  - MT21
+  - MT22
+  - MT23
+  - MT24
+  - MT25
+  - MT26
+  - MT27
+  - MT28
+  - MT29
+  - MT30
+  - MT31
+  - MT32
+  - MT33
+  - MT34
+  - MT35
+  - MT36
+  - MT37
+  - MT38
+  - MT39
+  - MT40
+  - MT41
+  - MT42
+  - MT43
+  - MT44
+  - MT45
+  - MT46
+  - MT47
+  - MT48
+  - MT49
+  - MT50
+  - MT51
+  - MT52
+  - MT53
+  - MT54
+  - MT55
+  - MT56
+  - MT57
+  - MT58
+  - MT59
+  - MT60
+  - MT61
+  - MT62
+  - MT63
+  - MT64
+  - MT65
+  - MT66
+  - MT67
+  - MT68
+  - MT69
+  - MT70
+  - MT71
+  - MT72
+  - MT73
+  - MT74
+  - MT75
+  - MT76
+  - MT77
+  - MT78
+  - MT79
+  - MT80
+  - MT81
+  - MT82
+  - MT83
+  - MT84
+  - MT85
+  - MT86
+  - MT87
+  - MT88
+  - MT89
+  - MT90
+  - MT91
+  - MT92
+  - MT93
+  - MT94
+  - MT95
+  - MT96
+  - MT97
+  - MT98
+  - MT99
+  - MT100
+  - MT101
+  - MT102
+  - MT103
+  - MT104
+  - MT105
+  - MT106
+  - MT107
+  - MT108
+  - MT109
+  - MT110
+  auto:
+  - U.01.C
+  - U.03.C
+  - U.05.C
+  - U.02.t
+  - U.04.t
+  - U.06.t
+  - T.07.C
+  - T.09.C
+  - T.11.C
+  - T.08.t
+  - T.10.t
+  - T.12.t
+  manual_in_plots:
+  - TCM07
+  - TCM09
+  - TCM11
+  - TTM08
+  - TTM10
+  - TTM12
+  - UCM01
+  - UCM03
+  - UCM05
+  - UTM02
+  - UTM04
+  - UTM06
+  - UTM51
+observations:
+  manual:
+    MT01: data/inputs/all_sites/MT01.xlsx
+    MT02: data/inputs/all_sites/MT02.xlsx
+    MT03: data/inputs/all_sites/MT03.xlsx
+    MT04: data/inputs/all_sites/MT04.xlsx
+    MT05: data/inputs/all_sites/MT05.xlsx
+    MT06: data/inputs/all_sites/MT06.xlsx
+    MT07: data/inputs/all_sites/MT07.xlsx
+    MT08: data/inputs/all_sites/MT08.xlsx
+    MT09: data/inputs/all_sites/MT09.xlsx
+    MT10: data/inputs/all_sites/MT10.xlsx
+    MT100: data/inputs/all_sites/MT100.xlsx
+    MT101: data/inputs/all_sites/MT101.xlsx
+    MT102: data/inputs/all_sites/MT102.xlsx
+    MT103: data/inputs/all_sites/MT103.xlsx
+    MT104: data/inputs/all_sites/MT104.xlsx
+    MT105: data/inputs/all_sites/MT105.xlsx
+    MT106: data/inputs/all_sites/MT106.xlsx
+    MT107: data/inputs/all_sites/MT107.xlsx
+    MT108: data/inputs/all_sites/MT108.xlsx
+    MT109: data/inputs/all_sites/MT109.xlsx
+    MT11: data/inputs/all_sites/MT11.xlsx
+    MT110: data/inputs/all_sites/MT110.xlsx
+    MT12: data/inputs/all_sites/MT12.xlsx
+    MT13: data/inputs/all_sites/MT13.xlsx
+    MT14: data/inputs/all_sites/MT14.xlsx
+    MT15: data/inputs/all_sites/MT15.xlsx
+    MT16: data/inputs/all_sites/MT16.xlsx
+    MT17: data/inputs/all_sites/MT17.xlsx
+    MT18: data/inputs/all_sites/MT18.xlsx
+    MT19: data/inputs/all_sites/MT19.xlsx
+    MT20: data/inputs/all_sites/MT20.xlsx
+    MT21: data/inputs/all_sites/MT21.xlsx
+    MT22: data/inputs/all_sites/MT22.xlsx
+    MT23: data/inputs/all_sites/MT23.xlsx
+    MT24: data/inputs/all_sites/MT24.xlsx
+    MT25: data/inputs/all_sites/MT25.xlsx
+    MT26: data/inputs/all_sites/MT26.xlsx
+    MT27: data/inputs/all_sites/MT27.xlsx
+    MT28: data/inputs/all_sites/MT28.xlsx
+    MT29: data/inputs/all_sites/MT29.xlsx
+    MT30: data/inputs/all_sites/MT30.xlsx
+    MT31: data/inputs/all_sites/MT31.xlsx
+    MT32: data/inputs/all_sites/MT32.xlsx
+    MT33: data/inputs/all_sites/MT33.xlsx
+    MT34: data/inputs/all_sites/MT34.xlsx
+    MT35: data/inputs/all_sites/MT35.xlsx
+    MT36: data/inputs/all_sites/MT36.xlsx
+    MT37: data/inputs/all_sites/MT37.xlsx
+    MT38: data/inputs/all_sites/MT38.xlsx
+    MT39: data/inputs/all_sites/MT39.xlsx
+    MT40: data/inputs/all_sites/MT40.xlsx
+    MT41: data/inputs/all_sites/MT41.xlsx
+    MT42: data/inputs/all_sites/MT42.xlsx
+    MT43: data/inputs/all_sites/MT43.xlsx
+    MT44: data/inputs/all_sites/MT44.xlsx
+    MT45: data/inputs/all_sites/MT45.xlsx
+    MT46: data/inputs/all_sites/MT46.xlsx
+    MT47: data/inputs/all_sites/MT47.xlsx
+    MT48: data/inputs/all_sites/MT48.xlsx
+    MT49: data/inputs/all_sites/MT49.xlsx
+    MT50: data/inputs/all_sites/MT50.xlsx
+    MT51: data/inputs/all_sites/MT51.xlsx
+    MT52: data/inputs/all_sites/MT52.xlsx
+    MT53: data/inputs/all_sites/MT53.xlsx
+    MT54: data/inputs/all_sites/MT54.xlsx
+    MT55: data/inputs/all_sites/MT55.xlsx
+    MT56: data/inputs/all_sites/MT56.xlsx
+    MT57: data/inputs/all_sites/MT57.xlsx
+    MT58: data/inputs/all_sites/MT58.xlsx
+    MT59: data/inputs/all_sites/MT59.xlsx
+    MT60: data/inputs/all_sites/MT60.xlsx
+    MT61: data/inputs/all_sites/MT61.xlsx
+    MT62: data/inputs/all_sites/MT62.xlsx
+    MT63: data/inputs/all_sites/MT63.xlsx
+    MT64: data/inputs/all_sites/MT64.xlsx
+    MT65: data/inputs/all_sites/MT65.xlsx
+    MT66: data/inputs/all_sites/MT66.xlsx
+    MT67: data/inputs/all_sites/MT67.xlsx
+    MT68: data/inputs/all_sites/MT68.xlsx
+    MT69: data/inputs/all_sites/MT69.xlsx
+    MT70: data/inputs/all_sites/MT70.xlsx
+    MT71: data/inputs/all_sites/MT71.xlsx
+    MT72: data/inputs/all_sites/MT72.xlsx
+    MT73: data/inputs/all_sites/MT73.xlsx
+    MT74: data/inputs/all_sites/MT74.xlsx
+    MT75: data/inputs/all_sites/MT75.xlsx
+    MT76: data/inputs/all_sites/MT76.xlsx
+    MT77: data/inputs/all_sites/MT77.xlsx
+    MT78: data/inputs/all_sites/MT78.xlsx
+    MT79: data/inputs/all_sites/MT79.xlsx
+    MT80: data/inputs/all_sites/MT80.xlsx
+    MT81: data/inputs/all_sites/MT81.xlsx
+    MT82: data/inputs/all_sites/MT82.xlsx
+    MT83: data/inputs/all_sites/MT83.xlsx
+    MT84: data/inputs/all_sites/MT84.xlsx
+    MT85: data/inputs/all_sites/MT85.xlsx
+    MT86: data/inputs/all_sites/MT86.xlsx
+    MT87: data/inputs/all_sites/MT87.xlsx
+    MT88: data/inputs/all_sites/MT88.xlsx
+    MT89: data/inputs/all_sites/MT89.xlsx
+    MT90: data/inputs/all_sites/MT90.xlsx
+    MT91: data/inputs/all_sites/MT91.xlsx
+    MT92: data/inputs/all_sites/MT92.xlsx
+    MT93: data/inputs/all_sites/MT93.xlsx
+    MT94: data/inputs/all_sites/MT94.xlsx
+    MT95: data/inputs/all_sites/MT95.xlsx
+    MT96: data/inputs/all_sites/MT96.xlsx
+    MT97: data/inputs/all_sites/MT97.xlsx
+    MT98: data/inputs/all_sites/MT98.xlsx
+    MT99: data/inputs/all_sites/MT99.xlsx
+    TCM07: data/inputs/all_sites/TCM07.xlsx
+    TCM09: data/inputs/all_sites/TCM09.xlsx
+    TCM11: data/inputs/all_sites/TCM11.xlsx
+    TTM08: data/inputs/all_sites/TTM08.xlsx
+    TTM10: data/inputs/all_sites/TTM10.xlsx
+    TTM12: data/inputs/all_sites/TTM12.xlsx
+    UCM01: data/inputs/all_sites/UCM01.xlsx
+    UCM03: data/inputs/all_sites/UCM03.xlsx
+    UCM05: data/inputs/all_sites/UCM05.xlsx
+    UTM02: data/inputs/all_sites/UTM02.xlsx
+    UTM06: data/inputs/all_sites/UTM06.xlsx
+    UTM51: data/inputs/all_sites/UTM51.xlsx
+  auto:
+    T.07.C: data/inputs/all_sites/T.07.C.xlsx
+    T.08.t: data/inputs/all_sites/T.08.t.xlsx
+    T.09.C: data/inputs/all_sites/T.09.C.xlsx
+    T.10.t: data/inputs/all_sites/T.10.t.xlsx
+    T.11.C: data/inputs/all_sites/T.11.C.xlsx
+    T.12.t: data/inputs/all_sites/T.12.t.xlsx
+    U.01.C: data/inputs/all_sites/U.01.C.xlsx
+    U.02.t: data/inputs/all_sites/U.02.t.xlsx
+    U.03.C: data/inputs/all_sites/U.03.C.xlsx
+    U.04.t: data/inputs/all_sites/U.04.t.xlsx
+    U.05.C: data/inputs/all_sites/U.05.C.xlsx
+    U.06.t: data/inputs/all_sites/U.06.t.xlsx
+layers:
+- name: OT
+  thickness_m: 0.03
+  porosity: 0.8
+  bulk_density: 1009.0
+- name: OB
+  thickness_m: 0.05
+  porosity: 0.5
+  bulk_density: 1200.0
+- name: ML
+  thickness_m: 0.035
+  porosity: 0.2
+  bulk_density: 1500.0
+initial_layer_states:
+  Ace:
+  - 0.0
+  - 0.0
+  - 0.0
+  CO2:
+  - 0.0
+  - 0.0
+  - 0.0
+  O2:
+  - 0.0
+  - 0.0
+  - 0.0
+  H2Methanogens:
+  - 0.0
+  - 0.0
+  - 0.0
+  CH4:
+  - 0.0
+  - 0.0
+  - 0.0
+  AC:
+  - 0.0
+  - 0.0
+  - 0.0
+  Methanotrophs:
+  - 0.0
+  - 0.0
+  - 0.0
+  AceMethanogens:
+  - 0.0
+  - 0.0
+  - 0.0
+  H2:
+  - 0.0
+  - 0.0
+  - 0.0
+constants:
+  CLM_layers_depth_cm:
+  - 0.7
+  - 2.8
+  - 6.2
+  - 11.9
+  - 21.2
+  - 36.6
+  - 62
+  - 103.8
+  - 172.8
+  - 286.5
+  CLM_base_decomposition_rate:
+  - 0.7
+  - 0.07
+  - 0.01
+  - 0.07
+  - 0.014
+  - 0.0014
+  - 0.0001
+  - 1.0e-05
+  CLM_pool_data:
+  - - 65.0
+    - 0
+  - - 0.001065283
+    - 7.10793e-05
+  - - 0.001065283
+    - 7.10793e-05
+  - - 0.001065283
+    - 7.10793e-05
+  - - 0.001065283
+    - 7.10793e-05
+  - - 0.066047542
+    - 0.004406916
+  - - 0.044741883
+    - 0.00298533
+  - - 0.083092069
+    - 0.005544184
+  - - 0.014913961
+    - 0.00099511
+  CLM_microbial_initial:
+  - 0.0063
+  - 1.0e-06
+  - 1.0e-06
+  - 0.376      # initialacemeth
+  - 0.752      # initialh2meth
+  - 1.0e-08    # initialmethanotrophs
+  CLM_vwc_initial:
+  - 0.48
+  - 0.7
+  CLM_gas_initial:
+    names:
+    - pch4
+    - pco2
+    - po2
+    - ph2
+    values:
+    - 1.4
+    - 420
+    - 209500
+    - 0.5
+parameters:
+  alpha_O2: 0.5
+  alpha_hydrogen: 0.01
+  use_config_microbe_params: false
+  microbe_par_dict:
+    m_dKAce: 0.005
+    m_dAceProdACmax: 0.005
+    m_dKAceProdO2: 0.004
+    m_dH2ProdAcemax: 0.015
+    m_dKH2ProdAce: 1.65e-05
+    m_dKCO2ProdAce: 8.25e-06
+    m_dGrowRH2Methanogens: 0.25
+    m_dDeadRH2Methanogens: 0.001
+    m_dYH2Methanogens: 0.2
+    m_dGrowRAceMethanogens: 0.015
+    m_dDeadRAceMethanogens: 0.05
+    m_dYAceMethanogens: 0.04
+    m_dGrowRMethanotrophs: 0.15
+    m_dDeadRMethanotrophs: 0.0005
+    m_dYMethanotrophs: 0.4
+    m_dGrowRAOMMethanotrophs: 0.015
+    m_dDeadRAOMMethanotrophs: 0.0003
+    m_dYAOMMethanotrophs: 0.05
+    m_dAceProdQ10: 1.5
+    m_dACProdQ10: 1.5
+    m_dACMinQ10: 1.5
+    m_dAceH2min: 4.8e-05
+    m_dCH4H2min: 4.1e-06
+    m_dKH2ProdCH4: 7.75e-06
+    m_dKCO2ProdCH4: 3.1e-08
+    m_dH2CH4ProdQ10: 1.5
+    m_dH2AceProdQ10: 1.5
+    m_dKCH4ProdAce: 0.005
+    m_dKCH4ProdO2: 0.01
+    m_dCH4ProdQ10: 1.5
+    m_drCH4Prod: 0.5
+    m_dKCH4OxidCH4: 0.0025
+    m_dKAOMCH4OxidCH4: 0.025
+    m_dKCH4OxidO2: 0.5
+    m_dCH4OxidQ10: 1.5
+    m_dAOMCH4OxidQ10: 1.5
+    m_drAer: 2
+    m_dKAerO2: 10
+    m_dAerDecomQ10: 2.0
+    m_drCH4Oxid: 2
+    m_dKe: 0.03
+    m_dCH4min: 0.0005
+    m_dAirCH4: 0.0893
+    m_dAirH2: 0.0257
+    m_dAirO2: 9375.0
+    m_dAirCO2: 16.295
+    AOM: 0.0
+    H2maxCH4: 1000
+    AcemaxCH4: 2000

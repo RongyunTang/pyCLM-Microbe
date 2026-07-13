@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+
+# Environments
+.venv/
+venv/
+env/
+
+# Model outputs
+simulations/
+results/
+outputs/
+*.npz
+
+# Tooling / OS
+.pytest_cache/
+.DS_Store
+.idea/
+.vscode/

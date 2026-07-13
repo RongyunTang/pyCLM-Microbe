@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyclm-microbe"
+version = "2.0.0"
+description = "CLM-Microbe soil biogeochemical model (forward simulation)"
+requires-python = ">=3.10"
+readme = "README.md"
+
+dependencies = [
+    "numpy>=1.26",
+    "pandas>=2.2",
+    "matplotlib>=3.9",
+    "pyyaml>=6.0",
+    "openpyxl>=3.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.2",
+]
+
+[project.scripts]
+clm-forward = "scripts.runner_forward:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["clm_microbe*", "scripts*"]
